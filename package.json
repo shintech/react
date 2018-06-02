@@ -1,0 +1,79 @@
+{
+  "name": "react-pug",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node start.js",
+    "dev": "NODE_ENV=development PORT=8000 TZ='America/Chicago' nodemon start.js",
+    "test": "NODE_ENV=test PORT=8001 TZ='America/Chicago' mocha dist/test -t 10000",
+    "build": "babel -d dist src",
+    "watch": "babel --watch -d dist src --ignore src/frontend | ts '[%Y-%m-%d %H:%M:%S]'",
+    "webpack": "webpack --watch --progress",
+    "server": "webpack-dev-server"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "chalk": "^2.4.1",
+    "connect-redis": "^3.3.3",
+    "cookie-parser": "^1.4.3",
+    "csurf": "^1.9.0",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "html-loader": "^0.5.5",
+    "jquery": "^3.3.1",
+    "lodash": "^4.17.10",
+    "morgan": "^1.9.0",
+    "pg-promise": "^8.4.3",
+    "pug": "^2.0.3",
+    "pug-loader": "^2.4.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "serve-favicon": "^2.5.0",
+    "winston": "^2.4.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-plugin-transform-react-pug": "^4.0.0",
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "css-loader": "^0.28.11",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "mocha": "^5.1.1",
+    "npm-css": "^0.2.3",
+    "standard": "^11.0.1",
+    "standard-loader": "^6.0.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.8.1",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "standard": {
+    "globals": [
+      "it",
+      "describe",
+      "beforeEach",
+      "afterEach",
+      "before",
+      "after",
+      "Backbone",
+      "_",
+      "$",
+      "csrf",
+      "Storage",
+      "sessionStorage",
+      "pug"
+    ]
+  },
+  "engines": {
+    "node": ">=6"
+  }
+}
