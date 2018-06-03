@@ -1,12 +1,39 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Device from './components/Device.jsx'
 
-const El = ({ title }) =>
-  pug`
-    h1= title
-  `
+require('../../public/less/index.less')
+
+class Container extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      devices: []
+    }
+  }
+
+  componentDidMount () {
+    return fetch('/api/devices')
+      .then(response => response.json())
+      .then(json => {
+        this.setState({
+          devices: json.response
+        })
+      })
+  }
+
+  render () {
+    return (
+      <div>
+        {this.state.devices.map((item, i) =>
+          <Device key={i} {...item} />
+        )}
+      </div>
+    )
+  }
+}
 
 ReactDOM.render(
-  <El title='Success' />,
-  document.getElementById('react-container')
+  <Container title='Success' />,
+  document.getElementById('container')
 )
