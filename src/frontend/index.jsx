@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Device from './components/Device.jsx'
+import Navbar from './components/Navbar.jsx'
 
 require('../../public/less/index.less')
 
@@ -34,6 +35,10 @@ class Container extends React.Component {
 }
 
 ReactDOM.render(
-  <Container title='Success' />,
+  <div className='root'>
+    <Navbar />
+    <Container title='Success' />
+  </div>,
+
   document.getElementById('container')
 )
