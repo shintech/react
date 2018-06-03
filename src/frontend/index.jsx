@@ -5,6 +5,8 @@ import Navbar from './components/Navbar.jsx'
 
 require('../../public/less/index.less')
 
+if (module.hot) module.hot.accept()
+
 class Container extends React.Component {
   constructor () {
     super()

@@ -2,14 +2,12 @@ const webpack = require('webpack')
 const path = require('path')
 
 const environment = process.env['NODE_ENV'] || 'development'
-// const target = process.env['TARGET'] || 'http://localhost:8000/'
+const target = process.env['TARGET'] || 'http://localhost:8000/'
 
-// const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-//   template: path.join(__dirname, 'views', 'index.pug')
-//   // filename: 'index.pug',
-//   // inject: 'body'
-// })
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: '!!pug-loader!' + path.join(__dirname, 'views', 'template.pug')
+})
 
 const paths = {
   ENTRY: path.join(__dirname, 'src', 'frontend', 'index.jsx'),
@@ -67,22 +65,25 @@ const config = {
 
   devtool: 'source-map',
 
-  // devServer: {
-  //   disableHostCheck: true,
-  //   host: '0.0.0.0',
-  //   port: 8081,
-  //   proxy: {
-  //     '/api': {
-  //       target: target,
-  //       secure: false
-  //     }
-  //   },
-  //   contentBase: path.join(__dirname, 'views'),
-  //   publicPath: path.join(__dirname)
-  // },
+  devServer: {
+    disableHostCheck: true,
+    host: '0.0.0.0',
+    inline: true,
+    hot: true,
+    port: 8081,
+    proxy: {
+      '/api': {
+        target: target,
+        secure: false
+      },
+      '/public': {
+        target: target,
+        secure: false
+      }
+    }
+  },
 
   plugins: [
-    // HtmlWebpackPluginConfig,
     new webpack.ProvidePlugin({
       $: 'jquery',
       _: 'lodash'
@@ -97,6 +98,12 @@ const config = {
       }
     })
   ]
+}
+
+if (environment === 'development') {
+  config.plugins.push(HtmlWebpackPluginConfig)
+  config.plugins.push(new webpack.NamedModulesPlugin())
+  config.plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 
 module.exports = config
