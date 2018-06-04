@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom'
 
 import Navbar from './components/Navbar.jsx'
 import Article from './components/Article.jsx'
+import StarRating from './components/StarRating.jsx'
 import AddDeviceForm from './components/AddDeviceForm.jsx'
 
 require('babel-polyfill')
@@ -34,16 +35,6 @@ class Root extends React.Component {
     })
   }
 
-  render () {
-    return (
-      <div className='root'>
-        <Navbar />
-        <AddDeviceForm submitForm={this.submitForm} />
-        <Article title='devices' devices={this.state.devices} />
-      </div>
-    )
-  }
-
   async submitForm (obj) {
     let json
 
@@ -62,6 +53,17 @@ class Root extends React.Component {
     }
 
     console.log(json)
+  }
+
+  render () {
+    return (
+      <div className='root'>
+        <Navbar />
+        <StarRating />
+        <AddDeviceForm submitForm={this.submitForm} />
+        <Article title='devices' devices={this.state.devices} />
+      </div>
+    )
   }
 }
 
