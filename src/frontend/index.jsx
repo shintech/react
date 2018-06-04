@@ -14,6 +14,8 @@ class Root extends React.Component {
   constructor () {
     super()
 
+    this.onRate = this.onRate.bind(this)
+
     this.state = {
       devices: []
     }
@@ -67,11 +69,17 @@ class Root extends React.Component {
     console.log(json)
   }
 
+  onRate (starsSelected) {
+    this.setState({
+      starsSelected: starsSelected
+    })
+  }
+
   render () {
     return (
       <div className='root'>
         <Navbar active={this.state.activeNavTab} />
-        <StarRating starsSelected={3} />
+        <StarRating starsSelected={this.state.starsSelected} onRate={this.onRate} />
         <AddDeviceForm submitForm={this.submitForm} />
         <Article title='devices' devices={this.state.devices} />
       </div>

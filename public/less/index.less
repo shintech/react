@@ -2,12 +2,12 @@
 @import 'components/navbar';
 @import 'components/article';
 
-@background: lighten(lightgrey, 5%);
+@background: lighten(pink, 5%);
 
 @nav-background: darken(@background, 70%);
-@nav-hover: darken(@nav-background, 20%);
+@nav-hover: darken(@nav-background, 10%);
 @nav-text: lighten(@nav-background, 100%);
-@nav-active: #4CAF50;
+@nav-active: lighten(@nav-background, 27%);
 @nav-select: red;
 
 @error: red;
@@ -50,18 +50,19 @@ margin: 2px;
 float: left;
 background-color: grey;
 clip-path: polygon(
-50% 0%,
-63% 38%,
-100% 38%,
-69% 59%,
-82% 100%,
-50% 75%,
-18% 100%,
-31% 59%,
-0% 38%,
-37% 38%
-);
+  50% 0%,
+  63% 38%,
+  100% 38%,
+  69% 59%,
+  82% 100%,
+  50% 75%,
+  18% 100%,
+  31% 59%,
+  0% 38%,
+  37% 38%
+  );
 }
+
 .star.selected {
 background-color: red;
 }
