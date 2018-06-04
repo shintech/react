@@ -12,8 +12,4 @@ StarRating.propTypes = {
   totalStars: PropTypes.number
 }
 
-StarRating.defaultProps = {
-  totalStars: 5
-}
-
 export default StarRating
