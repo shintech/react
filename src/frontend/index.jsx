@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import Navbar from './components/Navbar.jsx'
 import Article from './components/Article.jsx'
 
+require('babel-polyfill')
 require('../../public/less/index.less')
 
 if (module.hot) module.hot.accept()
@@ -10,19 +11,26 @@ if (module.hot) module.hot.accept()
 class Root extends React.Component {
   constructor () {
     super()
+
     this.state = {
       devices: []
     }
   }
 
-  componentDidMount () {
-    return fetch('/api/devices')
-      .then(response => response.json())
-      .then(json => {
-        this.setState({
-          devices: json.response
-        })
-      })
+  async componentDidMount () {
+    let json
+
+    try {
+      let devices = await fetch('/api/devices')
+
+      json = await devices.json()
+    } catch (err) {
+      throw new Error(err.message)
+    }
+
+    this.setState({
+      devices: json.response
+    })
   }
 
   render () {
