@@ -15,7 +15,6 @@ class Root extends React.Component {
     super()
 
     this.state = {
-      activeNavTab: window.location.hash,
       devices: []
     }
 
@@ -24,6 +23,12 @@ class Root extends React.Component {
         activeNavTab: window.location.hash
       })
     }
+  }
+
+  componentWillMount () {
+    this.setState({
+      activeNavTab: window.location.hash
+    })
   }
 
   async componentDidMount () {
@@ -66,7 +71,7 @@ class Root extends React.Component {
     return (
       <div className='root'>
         <Navbar active={this.state.activeNavTab} />
-        <StarRating />
+        <StarRating starsSelected={3} />
         <AddDeviceForm submitForm={this.submitForm} />
         <Article title='devices' devices={this.state.devices} />
       </div>
