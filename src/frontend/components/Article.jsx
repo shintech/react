@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types'
 import Device from './Device.jsx'
 
-export default ({ title, devices }) =>
+const Article = ({ title, devices }) =>
   <article>
     <div className='devices'>
       {devices.map((item, i) =>
@@ -8,3 +9,9 @@ export default ({ title, devices }) =>
       )}
     </div>
   </article>
+
+Article.propTypes = {
+  devices: PropTypes.array.isRequired
+}
+
+export default Article
