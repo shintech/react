@@ -15,7 +15,14 @@ class Root extends React.Component {
     super()
 
     this.state = {
+      activeNavTab: window.location.hash,
       devices: []
+    }
+
+    window.onhashchange = (e) => {
+      this.setState({
+        activeNavTab: window.location.hash
+      })
     }
   }
 
@@ -58,7 +65,7 @@ class Root extends React.Component {
   render () {
     return (
       <div className='root'>
-        <Navbar />
+        <Navbar active={this.state.activeNavTab} />
         <StarRating />
         <AddDeviceForm submitForm={this.submitForm} />
         <Article title='devices' devices={this.state.devices} />

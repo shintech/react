@@ -1,8 +1,8 @@
 export default ({ active }) =>
   <nav>
-    <li><a className='nav-index' href='#/'>home</a></li>
-    <li><a className='nav-users' href='#/users'>users</a></li>
-    <li><a className='nav-devices' href='#/devices'>devices</a></li>
+    <li><a className={active === '#/' ? 'active' : null} href='#/'>home</a></li>
+    <li><a className={active === '#/users' ? 'active' : null} href='#/users'>users</a></li>
+    <li><a className={active === '#/devices' ? 'active' : null} href='#/devices'>devices</a></li>
 
     <div className='dropdown'>
       <button className='dropbtn'>actions &middot;</button>
