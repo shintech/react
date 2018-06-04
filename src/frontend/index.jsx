@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom'
 
 import Navbar from './components/Navbar.jsx'
 import Article from './components/Article.jsx'
+import AddDeviceForm from './components/AddDeviceForm.jsx'
 
 require('babel-polyfill')
 require('../../public/less/index.less')
@@ -37,9 +38,30 @@ class Root extends React.Component {
     return (
       <div className='root'>
         <Navbar />
+        <AddDeviceForm submitForm={this.submitForm} />
         <Article title='devices' devices={this.state.devices} />
       </div>
     )
+  }
+
+  async submitForm (obj) {
+    let json
+
+    try {
+      let result = await fetch('/api/devices', {
+        method: 'POST',
+        body: JSON.stringify(obj),
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+
+      json = await result.json()
+    } catch (err) {
+      json = err.message
+    }
+
+    console.log(json)
   }
 }
 
