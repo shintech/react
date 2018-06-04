@@ -1,13 +1,13 @@
-import React from 'react'
 import ReactDOM from 'react-dom'
-import Device from './components/Device.jsx'
+
 import Navbar from './components/Navbar.jsx'
+import Article from './components/Article.jsx'
 
 require('../../public/less/index.less')
 
 if (module.hot) module.hot.accept()
 
-class Container extends React.Component {
+class Root extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -27,20 +27,12 @@ class Container extends React.Component {
 
   render () {
     return (
-      <div>
-        {this.state.devices.map((item, i) =>
-          <Device key={i} {...item} />
-        )}
+      <div className='root'>
+        <Navbar />
+        <Article title='devices' devices={this.state.devices} />
       </div>
     )
   }
 }
 
-ReactDOM.render(
-  <div className='root'>
-    <Navbar />
-    <Container title='Success' />
-  </div>,
-
-  document.getElementById('container')
-)
+ReactDOM.render(<Root />, document.getElementById('container'))

@@ -86,7 +86,8 @@ const config = {
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
-      _: 'lodash'
+      _: 'lodash',
+      React: 'react'
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,

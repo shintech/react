@@ -1,9 +1,6 @@
-import React from 'react'
-
 export default ({ id, serial, model, manufacturer }) =>
-  <ul className='device'>
-    <li>ID: { id }</li>
-    <li>Model: { model }</li>
-    <li>Manufacturer: { manufacturer }</li>
-    <li>Serial Number: { serial }</li>
+  <ul className='device-view'>
+    <li className='device-serial'>{ serial }</li>
+    <li className='device-manufacturer'>{ manufacturer }</li>
+    <li className='device-model'>{ model }</li>
   </ul>

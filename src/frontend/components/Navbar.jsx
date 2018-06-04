@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default ({ active }) =>
   <nav>
     <li><a className='nav-index' href='#/'>home</a></li>
