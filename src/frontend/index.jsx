@@ -27,16 +27,11 @@ class Root extends React.Component {
     }
   }
 
-  componentWillMount () {
-    this.setState({
-      activeNavTab: window.location.hash
-    })
-  }
-
-  async componentDidMount () {
+  async componentWillMount () {
     let json
 
     try {
+      this.setState({ loading: true })
       let devices = await fetch('/api/devices')
 
       json = await devices.json()
@@ -45,7 +40,9 @@ class Root extends React.Component {
     }
 
     this.setState({
-      devices: json.response
+      loading: false,
+      devices: json.response,
+      activeNavTab: window.location.hash
     })
   }
 
@@ -81,7 +78,7 @@ class Root extends React.Component {
         <Navbar active={this.state.activeNavTab} />
         <StarRating starsSelected={this.state.starsSelected} onRate={this.onRate} />
         <AddDeviceForm submitForm={this.submitForm} />
-        <Article title='devices' devices={this.state.devices} />
+        <Article title='devices' devices={this.state.devices} loading={this.state.loading} />
       </div>
     )
   }
