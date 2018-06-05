@@ -15,6 +15,8 @@ class Root extends React.Component {
     super()
 
     this.onRate = this.onRate.bind(this)
+    this.newDevice = this.newDevice.bind(this)
+    this.removeDevice = this.removeDevice.bind(this)
 
     this.state = {
       devices: []
@@ -32,6 +34,7 @@ class Root extends React.Component {
 
     try {
       this.setState({ loading: true })
+
       let devices = await fetch('/api/devices')
 
       json = await devices.json()
@@ -46,13 +49,13 @@ class Root extends React.Component {
     })
   }
 
-  async submitForm (obj) {
+  async newDevice (serial, model, manufacturer) {
     let json
 
     try {
       let result = await fetch('/api/devices', {
         method: 'POST',
-        body: JSON.stringify(obj),
+        body: JSON.stringify({ serial, model, manufacturer }),
         headers: {
           'content-type': 'application/json'
         }
@@ -60,16 +63,25 @@ class Root extends React.Component {
 
       json = await result.json()
     } catch (err) {
-      json = err.message
+      throw new Error(err.message)
     }
 
-    console.log(json)
+    let devices = [
+      json,
+      ...this.state.devices
+    ]
+
+    this.setState({ devices })
+  }
+
+  removeDevice (id) {
+    let devices = this.state.devices.filter(device => device.id !== id)
+
+    this.setState({ devices })
   }
 
   onRate (starsSelected) {
-    this.setState({
-      starsSelected: starsSelected
-    })
+    this.setState({ starsSelected })
   }
 
   render () {
@@ -77,7 +89,7 @@ class Root extends React.Component {
       <div className='root'>
         <Navbar active={this.state.activeNavTab} />
         <StarRating starsSelected={this.state.starsSelected} onRate={this.onRate} />
-        <AddDeviceForm submitForm={this.submitForm} />
+        <AddDeviceForm onNewDevice={this.newDevice} />
         <Article title='devices' devices={this.state.devices} loading={this.state.loading} />
       </div>
     )

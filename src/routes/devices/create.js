@@ -8,7 +8,7 @@ export default function (options) {
     options.startTime = Date.now()
 
     try {
-      result = await db.one('insert into devices(manufacturer, model, serial)' + 'values( ${manufacturer}, ${model}, ${serial} ) returning id', req.body) // eslint-disable-line
+      result = await db.one('insert into devices(manufacturer, model, serial)' + 'values( ${manufacturer}, ${model}, ${serial} ) returning id, serial, model, manufacturer', req.body) // eslint-disable-line
       status = 200
     } catch (err) {
       status = 500

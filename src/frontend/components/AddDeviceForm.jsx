@@ -1,16 +1,14 @@
-const AddDeviceForm = ({ submitForm = f => f }) => {
+const AddDeviceForm = ({ onNewDevice = f => f }) => {
   let _serial, _model, _manufacturer
 
   const submit = e => {
     e.preventDefault()
 
-    const obj = {
-      serial: _serial.value,
-      model: _model.value,
-      manufacturer: _manufacturer.value
-    }
+    let serial = _serial.value
+    let model = _model.value
+    let manufacturer = _manufacturer.value
 
-    submitForm(obj)
+    onNewDevice(serial, model, manufacturer)
   }
 
   /* eslint-disable */

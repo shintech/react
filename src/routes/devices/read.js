@@ -15,7 +15,7 @@ export default function (options) {
       try {
         // let query = `select count(*) over() total_count, * from devices order by id asc offset ${offset} fetch next ${pageSize} rows only;`
 
-        let query = 'select * from devices'
+        let query = 'select * from devices order by id desc'
 
         response = await db.any(query)
 
