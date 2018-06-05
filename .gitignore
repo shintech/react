@@ -18,3 +18,4 @@ shintech*
 /*.log
 /public/js/bundle.*
 /public/js/index.html
+*.hot-update.json
