@@ -1,12 +1,10 @@
 import Navbar from './components/Navbar.jsx'
-import Article from './components/Article.jsx'
+import DeviceList from './components/DeviceList.jsx'
 import StarRating from './components/StarRating.jsx'
 import AddDeviceForm from './components/AddDeviceForm.jsx'
 
 require('babel-polyfill')
 require('../../public/less/index.less')
-
-if (module.hot) module.hot.accept()
 
 export default class App extends React.Component {
   constructor (props) {
@@ -88,7 +86,7 @@ export default class App extends React.Component {
         <Navbar active={this.state.activeNavTab} />
         <StarRating starsSelected={this.state.starsSelected} onRate={this.onRate} />
         <AddDeviceForm onNewDevice={this.newDevice} />
-        <Article title='devices' devices={this.state.devices} loading={this.state.loading} />
+        <DeviceList devices={this.state.devices} loading={this.state.loading} />
       </div>
     )
   }
