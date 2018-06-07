@@ -1,5 +1,6 @@
-const AddDeviceForm = ({ onNewDevice = f => f }) => {
+const AddDeviceForm = (props) => {
   let _serial, _model, _manufacturer
+  const { createNewDevice, devices } = props
 
   const submit = e => {
     e.preventDefault()
@@ -8,7 +9,7 @@ const AddDeviceForm = ({ onNewDevice = f => f }) => {
     let model = _model.value
     let manufacturer = _manufacturer.value
 
-    onNewDevice(serial, model, manufacturer)
+    createNewDevice({ serial, model, manufacturer }, devices.payload)
   }
 
   /* eslint-disable */

@@ -3,6 +3,7 @@ import { changeRating } from '../actions'
 import StarRating from '../components/StarRating.jsx'
 
 /* eslint-disable */
+
 const mapStateToProps = (state) => {
   return {
     starsSelected: state.stars.starsSelected,

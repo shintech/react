@@ -1,5 +1,5 @@
 import { render } from 'react-dom'
-import App from './app.jsx'
+import App from './App.jsx'
 import { Provider } from 'react-redux'
 import configStore from './store/index.js'
 

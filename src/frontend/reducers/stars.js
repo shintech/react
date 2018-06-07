@@ -1,8 +1,8 @@
 const stars = (state = {}, action) => {
-  console.log('dispatch', action.type)
-
   switch (action.type) {
     case 'CHANGE_RATING':
+      console.log('dispatch', action.type)
+
       return {
         starsSelected: action.payload,
         totalStars: state.totalStars
