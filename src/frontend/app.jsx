@@ -1,16 +1,16 @@
+import { connect } from 'react-redux'
 import Navbar from './components/Navbar.jsx'
-import DeviceList from './components/DeviceList.jsx'
-import StarRating from './components/StarRating.jsx'
+import DeviceListContainer from './containers/DeviceListContainer.jsx'
+import StarContainer from './containers/StarContainer.jsx'
 import AddDeviceForm from './components/AddDeviceForm.jsx'
 
-require('babel-polyfill')
 require('../../public/less/index.less')
+require('babel-polyfill')
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor (props) {
-    super()
+    super(props)
 
-    this.onRate = this.onRate.bind(this)
     this.newDevice = this.newDevice.bind(this)
     this.removeDevice = this.removeDevice.bind(this)
 
@@ -23,26 +23,6 @@ export default class App extends React.Component {
         activeNavTab: window.location.hash
       })
     }
-  }
-
-  async componentWillMount () {
-    let json
-
-    try {
-      this.setState({ loading: true })
-
-      let devices = await fetch('/api/devices')
-
-      json = await devices.json()
-    } catch (err) {
-      throw new Error(err.message)
-    }
-
-    this.setState({
-      loading: false,
-      devices: json.response,
-      activeNavTab: window.location.hash
-    })
   }
 
   async newDevice (serial, model, manufacturer) {
@@ -76,18 +56,16 @@ export default class App extends React.Component {
     this.setState({ devices })
   }
 
-  onRate (starsSelected) {
-    this.setState({ starsSelected })
-  }
-
   render () {
     return (
       <div className='root'>
         <Navbar active={this.state.activeNavTab} />
-        <StarRating starsSelected={this.state.starsSelected} onRate={this.onRate} />
+        <StarContainer />
         <AddDeviceForm onNewDevice={this.newDevice} />
-        <DeviceList devices={this.state.devices} loading={this.state.loading} />
+        <DeviceListContainer />
       </div>
     )
   }
 }
+
+export default connect()(App)

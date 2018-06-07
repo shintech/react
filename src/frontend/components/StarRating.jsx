@@ -1,15 +1,24 @@
 import PropTypes from 'prop-types'
 import Star from './Star.jsx'
 
-const StarRating = ({ starsSelected = 0, totalStars = 5, onRate = f => f }) =>
-  <div className='star-rating'>
-    {[...Array(totalStars)].map((n, i) =>
-      <Star key={i} selected={i < starsSelected} onClick={() => onRate(i + 1)} />
-    )}
-  </div>
+class StarRating extends React.Component {
+  render () {
+    const { starsSelected, clickRating, totalStars } = this.props
+
+    return (
+      <div className='star-rating'>
+        {[...Array(totalStars)].map((n, i) =>
+          <Star key={i} selected={i < starsSelected} onClick={() => clickRating(i + 1)} />
+        )}
+      </div>
+    )
+  }
+}
 
 StarRating.propTypes = {
-  totalStars: PropTypes.number
+  starsSelected: PropTypes.number.isRequired,
+  totalStars: PropTypes.number.isRequired,
+  clickRating: PropTypes.func.isRequired
 }
 
 export default StarRating
