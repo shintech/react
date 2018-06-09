@@ -19,17 +19,17 @@ const AddDeviceForm = (props) => {
     <form onSubmit={submit}>
       <ul className='form-style'> 
         <li className='form-group'>
-          <label>Serial <span class="required">*</span></label>
+          <label>Serial <span className="required">*</span></label>
           <input ref={input => _serial = input} type='text' placeholder='Serial' required />
         </li>
 
         <li className='form-group'>
-          <label>Model Number <span class="required">*</span></label>
+          <label>Model Number <span className="required">*</span></label>
           <input ref={input => _model = input} type='text' placeholder='Model' required />
         </li>
         
         <li className='form-group'>
-          <label>Manufacturer<span class="required">*</span></label>
+          <label>Manufacturer<span className="required">*</span></label>
           <input ref={input => _manufacturer = input} type='text' placeholder='Manufacturer' required />
         </li>
         
