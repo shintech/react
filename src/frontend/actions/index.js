@@ -6,7 +6,7 @@ export const ADD_DEVICE_SUCCESS = 'ADD_DEVICE_SUCCESS'
 export const ADD_DEVICE_ERROR = 'ADD_DEVICE_ERROR'
 export const CHANGE_RATING = 'CHANGE_RATING'
 export const CHANGE_ACTIVE_TAB = 'CHANGE_ACTIVE_TAB'
-export const SHOW_MODAL = 'SHOW_MODAL'
+export const TOGGLE_MODAL = 'TOGGLE_MODAL'
 
 export async function addDevice (device, devices) {
   let json
@@ -89,8 +89,8 @@ export function changeActiveTab (activeTab) {
   }
 }
 
-export function showModal () {
+export function toggleModal () {
   return {
-    type: SHOW_MODAL
+    type: TOGGLE_MODAL
   }
 }

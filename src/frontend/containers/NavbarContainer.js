@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { changeActiveTab, showModal } from '../actions'
+import { changeActiveTab, toggleModal } from '../actions'
 import Navbar from '../components/Navbar.jsx'
 
 const mapStateToProps = (state) => {
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(changeActiveTab(activeTab))
     },
     modal: () => {
-      dispatch(showModal())
+      dispatch(toggleModal())
     }
   }
 }
