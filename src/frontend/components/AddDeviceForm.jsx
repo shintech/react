@@ -1,6 +1,6 @@
 const AddDeviceForm = (props) => {
   let _serial, _model, _manufacturer
-  const { createNewDevice, devices } = props
+  const { createNewDevice, devices, modal } = props
 
   const submit = e => {
     e.preventDefault()
@@ -10,16 +10,34 @@ const AddDeviceForm = (props) => {
     let manufacturer = _manufacturer.value
 
     createNewDevice({ serial, model, manufacturer }, devices.payload)
+    modal()
   }
 
   /* eslint-disable */
 
   return (
     <form onSubmit={submit}>
-      <input ref={input => _serial = input} type='text' placeholder='Serial' required />
-      <input ref={input => _model = input} type='text' placeholder='Model' required />
-      <input ref={input => _manufacturer = input} type='text' placeholder='Manufacturer' required />
-      <button>Add</button>
+      <ul className='form-style'> 
+        <li className='form-group'>
+          <label>Serial <span class="required">*</span></label>
+          <input ref={input => _serial = input} type='text' placeholder='Serial' required />
+        </li>
+
+        <li className='form-group'>
+          <label>Model Number <span class="required">*</span></label>
+          <input ref={input => _model = input} type='text' placeholder='Model' required />
+        </li>
+        
+        <li className='form-group'>
+          <label>Manufacturer<span class="required">*</span></label>
+          <input ref={input => _manufacturer = input} type='text' placeholder='Manufacturer' required />
+        </li>
+        
+        <li>
+          <button onClick={modal} type="button" className="close">Close</button>
+          <button type="submit" className="submit">Submit</button>
+        </li>
+      </ul>
     </form>
   )
 

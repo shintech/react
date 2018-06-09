@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { addDevice } from '../actions'
+import { addDevice, toggleModal } from '../actions'
 import AddDeviceForm from '../components/AddDeviceForm.jsx'
 
 const mapStateToProps = (state) => {
@@ -12,6 +12,13 @@ const mapDispatchToProps = (dispatch) => {
   return {
     createNewDevice: (attrs, devices) => {
       dispatch(addDevice(attrs, devices))
+    },
+
+    modal: () => {
+      dispatch(toggleModal({
+        template: null,
+        model: null
+      }))
     }
   }
 }

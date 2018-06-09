@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
     modal: () => {
       dispatch(toggleModal({
         model: null,
-        template: null
+        template: 'form'
       }))
     }
   }
