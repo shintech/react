@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { fetchDevices, fetchDevicesSuccess, fetchDevicesError } from '../actions'
+import { fetchDevices, fetchDevicesSuccess, fetchDevicesError, toggleModal } from '../actions'
 import DeviceList from '../components/DeviceList.jsx'
 
 const mapStateToProps = (state) => {
@@ -14,6 +14,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(fetchDevices()).then(response => {
         !response.error ? dispatch(fetchDevicesSuccess(response.payload)) : dispatch(fetchDevicesError(response.payload))
       })
+    },
+
+    modal: (model) => {
+      dispatch(toggleModal({ template: 'device', model: model }))
     }
   }
 }

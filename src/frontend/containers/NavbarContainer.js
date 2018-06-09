@@ -15,7 +15,10 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     modal: () => {
-      dispatch(toggleModal())
+      dispatch(toggleModal({
+        model: null,
+        template: null
+      }))
     }
   }
 }

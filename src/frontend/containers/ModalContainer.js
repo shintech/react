@@ -4,14 +4,16 @@ import Modal from '../components/Modal.jsx'
 
 const mapStateToProps = (state) => {
   return {
-    hidden: state.modal.hidden
+    hidden: state.modal.hidden,
+    template: state.modal.template,
+    model: state.modal.model
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    modal: () => {
-      dispatch(toggleModal())
+    modal: (props) => {
+      dispatch(toggleModal(props))
     }
   }
 }

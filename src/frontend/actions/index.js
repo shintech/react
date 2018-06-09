@@ -89,8 +89,12 @@ export function changeActiveTab (activeTab) {
   }
 }
 
-export function toggleModal () {
+export function toggleModal (props) {
+  const { model, template } = props
+
   return {
-    type: TOGGLE_MODAL
+    type: TOGGLE_MODAL,
+    template: template,
+    model: model
   }
 }

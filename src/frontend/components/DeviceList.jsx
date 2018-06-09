@@ -7,15 +7,15 @@ class DeviceList extends React.Component {
 
   render () {
     const { payload, loading, error } = this.props.devices
+    const { modal } = this.props
 
     if (!payload) { return <h3>Loading...</h3> } else if (error) { return <h3>Error...</h3> }
-
     return (
       <div className='devices'>
         {(loading) ? <h3>Loading...</h3>
           : <ul className='devices-list'>
             {payload.map(device =>
-              <Device key={device.id} {...device} />
+              <Device onClick={() => { modal(device) }} key={device.id} {...device} />
             )}
           </ul>
         }

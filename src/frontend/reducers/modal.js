@@ -5,7 +5,9 @@ const modal = (state = {}, action) => {
       let hidden = !state.hidden
 
       return {
-        hidden: hidden
+        hidden: hidden,
+        template: action.template,
+        model: action.model
       }
 
     default:
