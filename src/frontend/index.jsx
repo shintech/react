@@ -12,6 +12,9 @@ const store = configStore({
   },
   navbar: {
     active: window.location.hash
+  },
+  modal: {
+    hidden: true
   }
 })
 

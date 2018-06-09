@@ -3,6 +3,7 @@ import NavbarContainer from './containers/NavbarContainer.jsx'
 import DeviceListContainer from './containers/DeviceListContainer.jsx'
 import StarContainer from './containers/StarContainer.jsx'
 import AddDeviceContainer from './containers/AddDeviceContainer.jsx'
+import ModalContainer from './containers/ModalContainer.jsx'
 
 require('../../public/less/index.less')
 require('babel-polyfill')
@@ -21,6 +22,7 @@ class App extends React.Component {
         <StarContainer />
         <AddDeviceContainer />
         <DeviceListContainer />
+        <ModalContainer />
       </div>
     )
   }

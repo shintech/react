@@ -1,6 +1,6 @@
 export default class Navbar extends React.Component {
   render () {
-    const { changeActiveTab, active } = this.props
+    const { changeActiveTab, modal, active } = this.props
 
     return (
       <nav>
@@ -14,7 +14,7 @@ export default class Navbar extends React.Component {
         <div className='dropdown'>
           <button className='dropbtn'>actions &middot;</button>
           <div className='dropdown-content'>
-            <a id='create-new'>Create New</a>
+            <a onClick={modal} id='create-new'>Create New</a>
             <a id='login' href='#/login'>Login</a>
             <a id='logout'>Logout</a>
           </div>

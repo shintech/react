@@ -8,7 +8,7 @@ class DeviceList extends React.Component {
   render () {
     const { payload, loading, error } = this.props.devices
 
-    if (loading || !payload) { return <h3>Loading...</h3> } else if (error) { return <h3>Error...</h3> }
+    if (!payload) { return <h3>Loading...</h3> } else if (error) { return <h3>Error...</h3> }
 
     return (
       <div className='devices'>
