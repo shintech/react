@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
-import NavbarContainer from './containers/NavbarContainer.jsx'
-import DeviceListContainer from './containers/DeviceListContainer.jsx'
-import StarContainer from './containers/StarContainer.jsx'
-import AddDeviceContainer from './containers/AddDeviceContainer.jsx'
-import ModalContainer from './containers/ModalContainer.jsx'
+import NavbarContainer from './containers/NavbarContainer.js'
+import DeviceListContainer from './containers/DeviceListContainer.js'
+import StarContainer from './containers/StarContainer.js'
+import AddDeviceContainer from './containers/AddDeviceContainer.js'
+import ModalContainer from './containers/ModalContainer.js'
 
 require('../../public/less/index.less')
 require('babel-polyfill')
