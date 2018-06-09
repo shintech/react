@@ -13,6 +13,7 @@ const mapDispatchToProps = (dispatch) => {
     changeActiveTab: (activeTab) => {
       dispatch(changeActiveTab(activeTab))
     },
+
     modal: () => {
       dispatch(toggleModal())
     }

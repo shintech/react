@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { toggleModal } from '../actions'
 import Modal from '../components/Modal.jsx'
 
 const mapStateToProps = (state) => {
@@ -7,4 +8,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Modal)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    modal: () => {
+      dispatch(toggleModal())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modal)
