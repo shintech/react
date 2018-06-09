@@ -9,6 +9,9 @@ const store = configStore({
   stars: {
     totalStars: 5,
     starsSelected: 0
+  },
+  navbar: {
+    active: window.location.hash
   }
 })
 

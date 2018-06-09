@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Navbar from './components/Navbar.jsx'
+import NavbarContainer from './containers/NavbarContainer.jsx'
 import DeviceListContainer from './containers/DeviceListContainer.jsx'
 import StarContainer from './containers/StarContainer.jsx'
 import AddDeviceContainer from './containers/AddDeviceContainer.jsx'
@@ -8,20 +8,6 @@ require('../../public/less/index.less')
 require('babel-polyfill')
 
 class App extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      devices: []
-    }
-
-    window.onhashchange = (e) => {
-      this.setState({
-        activeNavTab: window.location.hash
-      })
-    }
-  }
-
   // removeDevice (id) {
   //   let devices = this.state.devices.filter(device => device.id !== id)
 
@@ -31,7 +17,7 @@ class App extends React.Component {
   render () {
     return (
       <div className='root'>
-        <Navbar active={this.state.activeNavTab} />
+        <NavbarContainer />
         <StarContainer />
         <AddDeviceContainer />
         <DeviceListContainer />

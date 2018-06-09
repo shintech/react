@@ -5,6 +5,7 @@ export const ADD_DEVICE = 'ADD_DEVICE'
 export const ADD_DEVICE_SUCCESS = 'ADD_DEVICE_SUCCESS'
 export const ADD_DEVICE_ERROR = 'ADD_DEVICE_ERROR'
 export const CHANGE_RATING = 'CHANGE_RATING'
+export const CHANGE_ACTIVE_TAB = 'CHANGE_ACTIVE_TAB'
 
 export async function addDevice (device, devices) {
   let json
@@ -77,5 +78,12 @@ export function changeRating (starsSelected) {
   return {
     type: CHANGE_RATING,
     payload: starsSelected
+  }
+}
+
+export function changeActiveTab (activeTab) {
+  return {
+    type: 'CHANGE_ACTIVE_TAB',
+    payload: activeTab
   }
 }
