@@ -3,11 +3,17 @@ import { Link } from 'react-router-dom'
 
 const Navbar = ({ changeActiveTab, modal, active }) =>
   <nav>
-    <li onClick={() => { changeActiveTab('#/') }}><Link className={active === '#/' || active === '' ? 'active' : null} to='/'>home</Link></li>
+    <li onClick={() => { changeActiveTab('#/') }}>
+      <Link className={active === '#/' || active === '' ? 'active' : null} to='/'>home</Link>
+    </li>
 
-    <li onClick={() => { changeActiveTab('#/users') }}><Link className={active === '#/users' ? 'active' : null} to='/users'>users</Link></li>
+    <li onClick={() => { changeActiveTab('#/users') }}>
+      <Link className={active === '#/users' ? 'active' : null} to='/users'>users</Link>
+    </li>
 
-    <li onClick={() => { changeActiveTab('#/devices') }}><Link className={active === '#/devices' ? 'active' : null} to='/devices'>devices</Link></li>
+    <li onClick={() => { changeActiveTab('#/devices') }}>
+      <Link className={active === '#/devices' ? 'active' : null} to='/devices'>devices</Link>
+    </li>
 
     <div className='dropdown'>
       <button className='dropbtn'>actions &middot;</button>

@@ -1,6 +1,6 @@
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { HashRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import AppContainer from './containers/AppContainer'
 import configStore from './store/index.js'
