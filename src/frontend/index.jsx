@@ -1,5 +1,6 @@
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
+import { HashRouter as Router, Route } from 'react-router-dom'
 import configStore from './store/index.js'
 import AppContainer from './containers/AppContainer'
 
@@ -22,9 +23,11 @@ const store = configStore({
 })
 
 render(
-  <Provider store={store}>
-    <AppContainer />
-  </Provider>,
+  <Router>
+    <Provider store={store}>
+      <Route path='/' component={AppContainer} />
+    </Provider>
+  </Router>,
 
   document.getElementById('container')
 )
