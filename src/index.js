@@ -15,6 +15,12 @@ export function start (options, callback) {
 
   app.use('/api', router)
 
+  app.use((req, res, next) => {
+    if (req.url === '/users' || req.url === '/devices') {
+      res.redirect('/')
+    }
+  })
+
   app.use(function (req, res) {
     res.status(400)
       .format({
