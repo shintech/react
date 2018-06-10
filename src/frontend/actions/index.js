@@ -1,6 +1,9 @@
 export const FETCH_DEVICES = 'FETCH_DEVICES'
 export const FETCH_DEVICES_SUCCESS = 'FETCH_DEVICES_SUCCESS'
 export const FETCH_DEVICES_ERROR = 'FETCH_DEVICES_ERROR'
+export const FETCH_USERS = 'FETCH_USERS'
+export const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS'
+export const FETCH_USERS_ERROR = 'FETCH_USERS_ERROR'
 export const ADD_DEVICE = 'ADD_DEVICE'
 export const ADD_DEVICE_SUCCESS = 'ADD_DEVICE_SUCCESS'
 export const ADD_DEVICE_ERROR = 'ADD_DEVICE_ERROR'
@@ -71,6 +74,35 @@ export function fetchDevicesSuccess (message) {
 export function fetchDevicesError (error) {
   return {
     type: FETCH_DEVICES_SUCCESS,
+    payload: error
+  }
+}
+
+export async function fetchUsers () {
+  let response = await fetch('/api/users', {
+    method: 'GET',
+    headers: []
+  })
+
+  let json = await response.json()
+
+  return {
+    type: FETCH_USERS,
+    payload: json.response,
+    meta: json.meta
+  }
+}
+
+export function fetchUsersSuccess (message) {
+  return {
+    type: FETCH_USERS_SUCCESS,
+    payload: message
+  }
+}
+
+export function fetchUsersError (error) {
+  return {
+    type: FETCH_USERS_SUCCESS,
     payload: error
   }
 }

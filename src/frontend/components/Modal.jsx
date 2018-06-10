@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import AddDeviceContainer from '../containers/AddDeviceContainer'
 import SingleDevice from '../components/SingleDevice.jsx'
+import SingleUser from '../components/SingleUser.jsx'
 
 const Modal = ({ hidden, modal, template, model }) => {
   if (hidden || !template) return <div className='hidden' />
@@ -9,6 +10,7 @@ const Modal = ({ hidden, modal, template, model }) => {
 
   if (template === 'form') html = <AddDeviceContainer />
   if (template === 'device') html = <SingleDevice device={model} />
+  if (template === 'user') html = <SingleUser user={model} />
 
   return (
     <div className='modal-container'>

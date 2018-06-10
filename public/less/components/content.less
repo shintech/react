@@ -1,10 +1,10 @@
-.devices-list {
+.content-list {
   list-style: none;
   margin: 0;
   padding-left: 0;
 }
 
-.device-view {
+.content-view {
   border: 1px solid black;
   border-collapse: collapse;    
   grid-template-columns: auto auto;
@@ -16,26 +16,44 @@
   background-color: @main-accent;
 }
 
-.device-view .device-model {
+.content-view .device-model {
   font-size: 10px;
   grid-row: 2;  
   grid-column: 2;
   text-align: right;
 }
 
-.device-view .device-manufacturer {
+.content-view .device-manufacturer {
   font-size: 10px;
   grid-row: 1;  
   grid-column: 2;
   text-align: right;
 }
 
-.device-view:hover{
+.content-view .user-email {
+  font-size: 10px;
+  grid-row: 1;  
+  grid-column: 2;
+  text-align: right;
+}
+
+.content-view .user-message {
+  font-size: 10px;
+  grid-row: 2;  
+  grid-column: 2;
+  text-align: right;
+}
+
+.content-view:hover{
   color: red;
   cursor: pointer;
   background-color: darken(@main-accent, 5%);
 } 
 
-.device-view:hover .device-model {
+.content-view:hover .device-model {
+  color: green;
+}
+
+.content-view:hover .user-message {
   color: green;
 }
