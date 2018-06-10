@@ -1,7 +1,10 @@
 import { render } from 'react-dom'
-import App from './App.jsx'
 import { Provider } from 'react-redux'
 import configStore from './store/index.js'
+import AppContainer from './containers/AppContainer'
+
+require('../../public/less/index.less')
+require('babel-polyfill')
 
 if (module.hot) module.hot.accept()
 
@@ -20,7 +23,7 @@ const store = configStore({
 
 render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
 
   document.getElementById('container')
