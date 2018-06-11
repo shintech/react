@@ -33,6 +33,7 @@ const devices = (state = [], action) => {
 
       return {
         payload: action.payload,
+        meta: action.meta,
         loading: false,
         error: null
       }

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { changePage } from '../actions'
 import HomePage from '../components/HomePage.jsx'
 
 const mapStateToProps = (state) => {
@@ -6,7 +7,11 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  return {
+    changePage (meta) {
+      dispatch(changePage(meta))
+    }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage)

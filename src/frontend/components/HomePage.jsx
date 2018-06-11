@@ -1,4 +1,16 @@
-const HomePage = () =>
-  <h3>Home</h3>
+export default class HomePage extends React.Component {
+  componentWillMount () {
+    const { changePage } = this.props
 
-export default HomePage
+    changePage({
+      pageSize: null,
+      pageCount: null
+    })
+  }
+
+  render () {
+    return (
+      <h1>Test</h1>
+    )
+  }
+}

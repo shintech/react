@@ -20,6 +20,11 @@ const store = configStore({
   },
   modal: {
     hidden: true
+  },
+  pagination: {
+    pageSize: 4,
+    pageCount: 0,
+    currentPage: 1
   }
 })
 

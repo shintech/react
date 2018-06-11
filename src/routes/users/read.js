@@ -1,4 +1,4 @@
-import { headers, MetaData } from '../../lib'
+import { headers } from '../../lib'
 
 export default function (options) {
   const { db, logger } = options
@@ -6,12 +6,25 @@ export default function (options) {
   return {
     all: async function (req, res) {
       let response, meta, status
+      let pageSize = 4
+      let page = parseInt(req.query.page) || 1
+
+      let offset = (page !== 1) ? (page - 1) * pageSize : 0
 
       options.startTime = Date.now()
 
       try {
-        response = await db.any('select * from users')
-        meta = await MetaData(req, response, 10)
+        let query = `select count(*) over() total_count, * from users order by id asc offset ${offset} fetch next ${pageSize} rows only;`
+
+        response = await db.any(query)
+        let count = response[0].total_count
+        let pageCount = count / pageSize
+
+        meta = {
+          count: count,
+          pageSize: pageSize,
+          pageCount: pageCount
+        }
         status = 200
       } catch (err) {
         response = { error: err.message || err }
@@ -20,13 +33,13 @@ export default function (options) {
         logger.error(response.error)
       }
 
-      response = { meta, response }
+      let obj = { meta, response }
 
       res.status(status)
         .format({
           json: () => {
-            res.set(headers(response, options))
-              .write(JSON.stringify(response))
+            res.set(headers(obj, options))
+              .write(JSON.stringify(obj))
 
             res.end()
           }

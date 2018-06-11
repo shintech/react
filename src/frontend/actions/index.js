@@ -10,6 +10,7 @@ export const ADD_DEVICE_ERROR = 'ADD_DEVICE_ERROR'
 export const CHANGE_RATING = 'CHANGE_RATING'
 export const CHANGE_ACTIVE_TAB = 'CHANGE_ACTIVE_TAB'
 export const TOGGLE_MODAL = 'TOGGLE_MODAL'
+export const CHANGE_PAGE = 'CHANGE_PAGE'
 
 export async function addDevice (device, devices) {
   let json
@@ -49,8 +50,8 @@ export function addDeviceError (error) {
   }
 }
 
-export async function fetchDevices () {
-  let response = await fetch('/api/devices', {
+export async function fetchDevices (page) {
+  let response = await fetch(`/api/devices?page=${page}`, {
     method: 'GET',
     headers: []
   })
@@ -64,10 +65,11 @@ export async function fetchDevices () {
   }
 }
 
-export function fetchDevicesSuccess (message) {
+export function fetchDevicesSuccess ({ payload, meta }) {
   return {
     type: FETCH_DEVICES_SUCCESS,
-    payload: message
+    payload: payload,
+    meta: meta
   }
 }
 
@@ -78,8 +80,8 @@ export function fetchDevicesError (error) {
   }
 }
 
-export async function fetchUsers () {
-  let response = await fetch('/api/users', {
+export async function fetchUsers (page) {
+  let response = await fetch(`/api/users?page=${page}`, {
     method: 'GET',
     headers: []
   })
@@ -93,10 +95,11 @@ export async function fetchUsers () {
   }
 }
 
-export function fetchUsersSuccess (message) {
+export function fetchUsersSuccess ({ payload, meta }) {
   return {
     type: FETCH_USERS_SUCCESS,
-    payload: message
+    payload: payload,
+    meta: meta
   }
 }
 
@@ -128,5 +131,13 @@ export function toggleModal (props) {
     type: TOGGLE_MODAL,
     template: template,
     model: model
+  }
+}
+
+export function changePage (meta, page) {
+  return {
+    type: 'CHANGE_PAGE',
+    meta: meta,
+    page: page
   }
 }

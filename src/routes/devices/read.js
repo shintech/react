@@ -6,19 +6,16 @@ export default function (options) {
   return {
     all: async function (req, res) {
       let response, meta, status
-      let pageSize = 16
-      // let page = parseInt(req.query.page) || 1
+      let pageSize = 10
+      let page = parseInt(req.query.page) || 1
 
-      // let offset = (page !== 1) ? (page - 1) * pageSize : 0
+      let offset = (page !== 1) ? (page - 1) * pageSize : 0
       options.startTime = Date.now()
 
       try {
-        // let query = `select count(*) over() total_count, * from devices order by id asc offset ${offset} fetch next ${pageSize} rows only;`
-
-        let query = 'select * from devices order by id desc'
+        let query = `select count(*) over() total_count, * from devices order by id asc offset ${offset} fetch next ${pageSize} rows only;`
 
         response = await db.any(query)
-
         let count = response[0].total_count
         let pageCount = count / pageSize
 
@@ -27,7 +24,6 @@ export default function (options) {
           pageSize: pageSize,
           pageCount: pageCount
         }
-
         status = 200
       } catch (err) {
         response = { error: err.message || err }

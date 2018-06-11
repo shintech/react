@@ -2,7 +2,14 @@ import User from './User.jsx'
 
 class UserList extends React.Component {
   componentWillMount () {
-    this.props.fetchUsers()
+    let { changePage, fetchUsers } = this.props
+
+    changePage({
+      pageSize: null,
+      pageCount: null
+    })
+
+    fetchUsers()
   }
 
   render () {

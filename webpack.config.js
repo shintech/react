@@ -79,6 +79,14 @@ const config = {
       '/public': {
         target: target,
         secure: false
+      },
+      '/users': {
+        target: target,
+        secure: false
+      },
+      '/devices': {
+        target: target,
+        secure: false
       }
     }
   },

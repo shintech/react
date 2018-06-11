@@ -2,11 +2,17 @@ import Device from './Device.jsx'
 
 class DeviceList extends React.Component {
   componentWillMount () {
-    this.props.fetchDevices()
+    let { changePage, fetchDevices } = this.props
+
+    fetchDevices()
+      .then(function (meta) {
+        changePage(meta, 1)
+      })
   }
 
   render () {
     const { payload, loading, error } = this.props.devices
+
     const { modal } = this.props
 
     if (!payload) { return <h3>Loading...</h3> } else if (error) { return <h3>Error...</h3> }
