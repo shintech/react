@@ -84,6 +84,10 @@ const config = {
         target: target,
         secure: false
       },
+      '/files': {
+        target: target,
+        secure: false
+      },
       '/devices': {
         target: target,
         secure: false

@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import {auth, home, users, devices} from './routes'
+import {auth, home, users, devices, files} from './routes'
 
 const router = Router()
 
@@ -27,6 +27,12 @@ export default function (options) {
     .get(devices(options).read.one)
     .put(devices(options).update)
     .delete(devices(options).destroy)
+
+  router.route('/files')
+    .get(files(options).read.all)
+
+  router.route('/files/:id')
+    .get(files(options).read.one)
 
   return router
 }

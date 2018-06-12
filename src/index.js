@@ -16,7 +16,7 @@ export function start (options, callback) {
   app.use('/api', router)
 
   app.use((req, res, next) => {
-    if (req.url === '/users' || req.url === '/devices') {
+    if (req.url === '/users' || req.url === '/devices' || req.url === '/files') {
       res.redirect('/')
     }
   })

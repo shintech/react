@@ -4,6 +4,11 @@ export const FETCH_DEVICES_ERROR = 'FETCH_DEVICES_ERROR'
 export const FETCH_USERS = 'FETCH_USERS'
 export const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS'
 export const FETCH_USERS_ERROR = 'FETCH_USERS_ERROR'
+
+export const FETCH_FILES = 'FETCH_FILES'
+export const FETCH_FILES_SUCCESS = 'FETCH_FILES_SUCCESS'
+export const FETCH_FILES_ERROR = 'FETCH_FILES_ERROR'
+
 export const ADD_DEVICE = 'ADD_DEVICE'
 export const ADD_DEVICE_SUCCESS = 'ADD_DEVICE_SUCCESS'
 export const ADD_DEVICE_ERROR = 'ADD_DEVICE_ERROR'
@@ -75,7 +80,7 @@ export function fetchDevicesSuccess ({ payload, meta }) {
 
 export function fetchDevicesError (error) {
   return {
-    type: FETCH_DEVICES_SUCCESS,
+    type: FETCH_DEVICES_ERROR,
     payload: error
   }
 }
@@ -105,7 +110,35 @@ export function fetchUsersSuccess ({ payload, meta }) {
 
 export function fetchUsersError (error) {
   return {
-    type: FETCH_USERS_SUCCESS,
+    type: FETCH_USERS_ERROR,
+    payload: error
+  }
+}
+
+export async function fetchFiles (page) {
+  let response = await fetch(`/api/files`, {
+    method: 'GET',
+    headers: []
+  })
+
+  let json = await response.json()
+
+  return {
+    type: FETCH_FILES,
+    payload: json.results
+  }
+}
+
+export function fetchFilesSuccess ({ payload }) {
+  return {
+    type: FETCH_FILES_SUCCESS,
+    payload: payload
+  }
+}
+
+export function fetchFilesError (error) {
+  return {
+    type: FETCH_FILES_ERROR,
     payload: error
   }
 }
