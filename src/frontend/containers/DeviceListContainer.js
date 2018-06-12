@@ -12,25 +12,23 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchDevices: () => {
-      return new Promise(function (resolve, reject) {
-        dispatch(fetchDevices())
-          .then(response => {
-            let { payload, meta } = response
+      dispatch(fetchDevices())
+        .then(response => {
+          let { payload, meta } = response
+          change(dispatch, meta, 1)
 
-            !response.error ? dispatch(fetchDevicesSuccess({payload, meta})) : dispatch(fetchDevicesError(response))
-            resolve(meta)
-          })
-      })
-    },
-
-    changePage: (meta, page) => {
-      dispatch(changePage(meta, page))
+          !response.error ? dispatch(fetchDevicesSuccess({payload, meta})) : dispatch(fetchDevicesError(response))
+        })
     },
 
     modal: (model) => {
       dispatch(toggleModal({ template: 'device', model: model }))
     }
   }
+}
+
+function change (dispatch, meta, page) {
+  dispatch(changePage(meta, page))
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeviceList)

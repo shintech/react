@@ -25,6 +25,12 @@ const store = configStore({
     pageSize: 4,
     pageCount: 0,
     currentPage: 1
+  },
+  devices: {
+    currentPage: 1
+  },
+  users: {
+    currentPage: 1
   }
 })
 

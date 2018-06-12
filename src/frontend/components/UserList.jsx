@@ -1,13 +1,9 @@
 import User from './User.jsx'
+import PaginationContainer from '../containers/PaginationContainer'
 
 class UserList extends React.Component {
   componentWillMount () {
-    let { changePage, fetchUsers } = this.props
-
-    changePage({
-      pageSize: null,
-      pageCount: null
-    })
+    let { fetchUsers } = this.props
 
     fetchUsers()
   }
@@ -26,6 +22,8 @@ class UserList extends React.Component {
             )}
           </ul>
         }
+
+        <PaginationContainer type='users' />
       </div>
     )
   }

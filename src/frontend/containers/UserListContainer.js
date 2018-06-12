@@ -12,25 +12,23 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchUsers: () => {
-      return new Promise(function (resolve, reject) {
-        dispatch(fetchUsers())
-          .then(response => {
-            let { payload, meta } = response
+      dispatch(fetchUsers())
+        .then(response => {
+          let { payload, meta } = response
+          change(dispatch, meta, 1)
 
-            !response.error ? dispatch(fetchUsersSuccess({ payload, meta })) : dispatch(fetchUsersError(response))
-            resolve(meta)
-          })
-      })
-    },
-
-    changePage: (meta, page) => {
-      dispatch(changePage(meta, page))
+          !response.error ? dispatch(fetchUsersSuccess({ payload, meta })) : dispatch(fetchUsersError(response))
+        })
     },
 
     modal: (model) => {
       dispatch(toggleModal({ template: 'user', model: model }))
     }
   }
+}
+
+function change (dispatch, meta, page) {
+  dispatch(changePage(meta, page))
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserList)

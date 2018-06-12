@@ -25,7 +25,8 @@ const devices = (state = [], action) => {
         payload: action.payload,
         meta: action.meta,
         error: null,
-        loading: true
+        loading: true,
+        currentPage: state.currentPage
       }
 
     case 'FETCH_DEVICES_SUCCESS':
@@ -35,7 +36,8 @@ const devices = (state = [], action) => {
         payload: action.payload,
         meta: action.meta,
         loading: false,
-        error: null
+        error: null,
+        currentPage: state.currentPage
       }
 
     case 'FETCH_DEVICES_ERROR':

@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
-import { changePage, fetchDevices, fetchDevicesSuccess, fetchDevicesError } from '../actions'
+import { changePage, fetchDevices, fetchDevicesSuccess, fetchDevicesError, fetchUsers, fetchUsersSuccess, fetchUsersError } from '../actions'
 import Pagination from '../components/Pagination.jsx'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
   return {
+    ownType: props.type,
     pageCount: state.pagination.pageCount,
     pageSize: state.pagination.pageSize,
     currentPage: state.pagination.currentPage
@@ -12,21 +13,24 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changePage: (meta, page) => {
-      dispatch(changePage(meta, page))
+    fetchDevices: (page) => {
+      dispatch(fetchDevices(page))
+        .then(response => {
+          let { payload, meta } = response
+          dispatch(changePage(meta, page))
+
+          !response.error ? dispatch(fetchDevicesSuccess({payload, meta})) : dispatch(fetchDevicesError(response))
+        })
     },
 
-    fetchDevices: (page) => {
-      return new Promise(function (resolve, reject) {
-        dispatch(fetchDevices(page))
-          .then(response => {
-            let { payload, meta } = response
+    fetchUsers: (page) => {
+      dispatch(fetchUsers(page))
+        .then(response => {
+          let { payload, meta } = response
+          dispatch(changePage(meta, page))
 
-            !response.error ? dispatch(fetchDevicesSuccess({payload, meta})) : dispatch(fetchDevicesError(response))
-            dispatch(changePage(meta, page))
-            resolve(meta)
-          })
-      })
+          !response.error ? dispatch(fetchUsersSuccess({payload, meta})) : dispatch(fetchUsersError(response))
+        })
     }
   }
 }

@@ -6,7 +6,7 @@ export default function (options) {
   return {
     all: async function (req, res) {
       let response, meta, status
-      let pageSize = 10
+      let pageSize = 4
       let page = parseInt(req.query.page) || 1
 
       let offset = (page !== 1) ? (page - 1) * pageSize : 0
