@@ -14,12 +14,20 @@ export default function configureStore (initialState) {
     return result
   }
 
+  const saver = store => next => action => {
+    let result = next(action)
+    localStorage['redux-store'] = JSON.stringify(store.getState())
+    return result
+  }
+
   const finalCreateStore = compose(
-    applyMiddleware(promise, logger),
+    applyMiddleware(promise, logger, saver),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )(createStore)
 
-  const store = finalCreateStore(reducer, initialState)
+  const store = finalCreateStore(reducer, (localStorage['redux-store'])
+    ? JSON.parse(localStorage['redux-store'])
+    : initialState)
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {
