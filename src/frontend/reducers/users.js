@@ -1,8 +1,6 @@
 const users = (state = [], action) => {
   switch (action.type) {
     case 'ADD_USER':
-      console.log('dispatch', action.type)
-
       const retval = [
         {
           id: action.json.id,
@@ -19,8 +17,6 @@ const users = (state = [], action) => {
       }
 
     case 'FETCH_USERS':
-      console.log('dispatch', action.type)
-
       return {
         payload: action.payload,
         meta: action.meta,
@@ -29,8 +25,6 @@ const users = (state = [], action) => {
       }
 
     case 'FETCH_USERS_SUCCESS':
-      console.log('dispatch', action.type)
-
       return {
         payload: action.payload,
         loading: false,
@@ -38,8 +32,6 @@ const users = (state = [], action) => {
       }
 
     case 'FETCH_USERS_ERROR':
-      console.log('dispatch', action.type)
-
       return {
         payload: action.payload,
         loading: false,

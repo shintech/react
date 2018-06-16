@@ -1,8 +1,6 @@
 const devices = (state = [], action) => {
   switch (action.type) {
     case 'ADD_DEVICE':
-      console.log('dispatch', action.type)
-
       const retval = [
         {
           id: action.json.id,
@@ -19,8 +17,6 @@ const devices = (state = [], action) => {
       }
 
     case 'FETCH_DEVICES':
-      console.log('dispatch', action.type)
-
       return {
         payload: action.payload,
         meta: action.meta,
@@ -30,8 +26,6 @@ const devices = (state = [], action) => {
       }
 
     case 'FETCH_DEVICES_SUCCESS':
-      console.log('dispatch', action.type)
-
       return {
         payload: action.payload,
         meta: action.meta,
@@ -41,8 +35,6 @@ const devices = (state = [], action) => {
       }
 
     case 'FETCH_DEVICES_ERROR':
-      console.log('dispatch', action.type)
-
       return {
         payload: action.payload,
         loading: false,
