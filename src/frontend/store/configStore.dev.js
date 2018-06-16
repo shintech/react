@@ -20,14 +20,12 @@ export default function configureStore (initialState) {
     return result
   }
 
-  const finalCreateStore = compose(
-    applyMiddleware(promise, logger, saver),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  )(createStore)
+  const finalCreateStore = compose(applyMiddleware(promise, logger, saver))(createStore)
 
-  const store = finalCreateStore(reducer, (localStorage['redux-store'])
-    ? JSON.parse(localStorage['redux-store'])
-    : initialState)
+  const store = finalCreateStore(reducer,
+    (localStorage['redux-store']) ? JSON.parse(localStorage['redux-store']) : initialState,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {

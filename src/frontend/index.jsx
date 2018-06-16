@@ -15,20 +15,25 @@ const store = configStore({
     totalStars: 5,
     starsSelected: 0
   },
+
   navbar: {
     active: window.location.hash
   },
+
   modal: {
     hidden: true
   },
+
   pagination: {
     pageSize: 4,
     pageCount: 0,
     currentPage: 1
   },
+
   devices: {
     currentPage: 1
   },
+
   users: {
     currentPage: 1
   }
